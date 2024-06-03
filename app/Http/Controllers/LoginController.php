@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -33,7 +32,13 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            $role = Auth::user()->role;
+
+            if ($role === 'admin') {
+                return redirect()->intended(route('admin.dashboard'));
+            } elseif ($role === 'patient') {
+                return redirect()->intended(route('patient.dashboard'));
+            }
         }
 
         return back()->withErrors([
@@ -55,6 +60,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
