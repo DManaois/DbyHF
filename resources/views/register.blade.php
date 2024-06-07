@@ -3,25 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 </head>
 <body>
-    <header>
-        <h1>My Website</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h2>Register</h2>
+    
+    <div class="form-container">
+        <div class="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+        </div>
+        <h2>Sign Up</h2>
         <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <label for="username">Username:</label>
+            <label for="username">Username:</label> 
             <input type="text" id="username" name="username" required>
             
             <label for="first_name">First Name:</label>
@@ -58,10 +52,13 @@
                     </ul>
                 </div>
             @endif
+
+            
+            <p>Already have an account? <a href="{{ route('login') }}">Sign In</a></p>
         </form>
-    </main>
-    <footer>
-        <p>&copy; 2024 My Website. All rights reserved.</p>
-    </footer>
+    </div>
+    <div class="image-container">
+        <img src="{{ asset('images/landscape.png') }}" alt="Landscape">
+    </div>
 </body>
 </html>
